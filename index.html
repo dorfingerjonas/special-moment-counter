@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- General -->
+    <title>special moments counter</title>
+    <!-- meta -->
+    <meta charset="utf-8">
+    <meta name="theme-color" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="./style/main.css">
+    <!-- Libraries -->
+    <link href="https://fonts.googleapis.com/css2?family=Oxygen&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/e7df220bd7.js" crossorigin="anonymous"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-database.js"></script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <!-- Script Files -->
+    <script src="./script/script.js"></script>
+</head>
+<body>
+    <h1>special moments counter</h1>
+    
+    <div id="contentWrapper">
+        <p id="counter">0</p>
+        
+        <div class="buttonWrapper">
+            <div class="button" id="decrement">decrement <i class="fas fa-long-arrow-alt-up"></i></div>
+            <div class="button" id="increment">increment <i class="fas fa-long-arrow-alt-up"></i></div>
+        </div>
+
+        <form action="#" method="POST">
+            <div class="g-recaptcha" data-callback="recaptchaCompleted" data-sitekey="6LdSg-IUAAAAAG6IHJ1MuTfa9ZYQrPjmAynIz7Sp"></div>
+        </form>
+    </div>
+
+    <div>
+        <h1>&nbsp;</h1>
+        <p>powered by <a href="https://dorfingerjonas.at">Jonas Dorfinger</a></p>
+    </div>
+</body>
+</html>
