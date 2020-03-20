@@ -21,9 +21,7 @@ window.addEventListener('load', () => {
     firebase.database().ref(`${appName}/counter`).on('value', snapshot => {
         if (snapshot.val() !== null) {
             let maxValue = snapshot.val();
-            let additionSum = 1;
-
-            console.log(maxValue);            
+            let additionSum = 1;     
             
             let interval = setInterval(() => {
                 if (parseInt(counter.textContent) + parseInt(additionSum) <= maxValue) {
@@ -44,7 +42,6 @@ window.addEventListener('load', () => {
                     counter.textContent = parseInt(counter.textContent) - parseInt(additionSum);
                 }
 
-                console.log(parseInt(counter.textContent))
                 if (maxValue === parseInt(counter.textContent)) clearInterval(interval);
             }, 1);
         }
@@ -52,15 +49,10 @@ window.addEventListener('load', () => {
 
     increment.addEventListener('click', () => {
         if (reCaptchaCorrect) {
-            firebase.database().ref(`${appName}/counter`).once('value').then(snapshot => {
-                console.log(snapshot.val());
-                
+            firebase.database().ref(`${appName}/counter`).once('value').then(snapshot => {                
                 if (snapshot.val() !== null) {
                     firebase.database().ref(`${appName}`).set({
                         counter: snapshot.val() + 1
-                    }).then(() => {
-                        grecaptcha.reset();
-                        reCaptchaCorrect = false;
                     });
                 }
             });
@@ -70,14 +62,9 @@ window.addEventListener('load', () => {
     decrement.addEventListener('click', () => {
         if (reCaptchaCorrect) {
             firebase.database().ref(`${appName}/counter`).once('value').then(snapshot => {
-                console.log(snapshot.val());
-
                 if (snapshot.val() !== null) {
                     firebase.database().ref(`${appName}`).set({
                         counter: snapshot.val() - 1
-                    }).then(() => {
-                        grecaptcha.reset();
-                        reCaptchaCorrect = false;
                     });
                 }
             });
@@ -87,4 +74,9 @@ window.addEventListener('load', () => {
 
 function recaptchaCompleted() {
     reCaptchaCorrect = true;
+
+    setTimeout(() => {
+        grecaptcha.reset();
+        reCaptchaCorrect = false;
+    }, 15000);
 }
